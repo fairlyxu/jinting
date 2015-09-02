@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Book Store</title>
+    <link rel="stylesheet" href="src/common/layout.css">
+    <link rel="stylesheet" href="src/book/list.css">
+    <link rel="stylesheet" href="src/cart/list.css">
+    <link rel="stylesheet" href="src/music/css/style.css">
+    <script src="src/common/esl.js"></script>
+    <script src="src/common/jquery.js"></script>
+    <script src="src/common/underscore-min.js"></script>
+</head>
+
+<body>
+    <div id="page">
+        <h1>Book Store</h1>
+        <div id="nav-wrap">
+            <nav id="nav">
+                <ul>
+                    <li id="link-to-book-list"><a href="#/book/list">图书列表</a></li>
+                    <li id="link-to-cart"><a href="#/cart/list">购物车</a></li>
+                    <li id="link-to-cart"><a href="#/music/index">音乐</a></li>
+                </ul>
+            </nav>
+        </div>
+         <div class='contain'>
+        <div class="media">
+            <!-- <audio src="src/media/countingstars.mp3" controls="controls">
+                Your browser does not support the audio tag.
+            </audio> -->
+            Volume <input id='volume' type='range' min='0' max='100' value='20'>
+            <p>stop <input id='stopBtn' type='button' value='30'></p>
+        </div>
+        <div class='main' id='box'>
+            <canvas id='myCanvas'> ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Your browser does not support the audio tag.</canvas>
+           
+        </div>
+    </div>
+
+    </div>
+    <!-- edp: { "loaderAutoConfig": false } -->
+    <script>
+    // packages 若要将config传给包，将目标设置为包的主模块而不是包ID:
+    require.config({
+        'baseUrl': 'src',
+        'packages': [{
+            'name': 'mini-event',
+            'location': '../dep/mini-event/1.0.0/src',
+            'main': 'main'
+        }, {
+            'name': 'etpl',
+            'location': '../dep/etpl/3.0.0/src',
+            'main': 'main'
+        }, {
+            'name': 'er',
+            'location': '../dep/er/3.1.0-alpha.6/src',
+            'main': 'main'
+        }, {
+            'name': 'eoo',
+            'location': './../../dep/eoo/0.0.8/src',
+            'main': 'oo'
+        },{
+            'name': 'MusicVisualizer',
+            'location': './music/js/MusicVisualizer',
+            'main': 'MusicVisualizer'
+        }],
+        'paths': {}
+    });
+    require(
+        [
+           'test/test'/*, 'music/js/main'*/
+        ],
+        function(test/*,main*/) {           
+
+            test();
+            //main();
+
+            //console.log(test); 
+           
+        }
+    );
+    </script>
+</body>
+
+</html>

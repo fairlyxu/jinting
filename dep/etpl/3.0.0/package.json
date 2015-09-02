@@ -1,0 +1,42 @@
+{
+  "name": "etpl",
+  "version": "3.0.0",
+  "contributors": [
+    {
+      "name": "erik",
+      "email": "errorrik@gmail.com"
+    },
+    {
+      "name": "otakustay",
+      "email": "otakustay@gmail.com"
+    },
+    {
+      "name": "firede",
+      "email": "firede@firede.us"
+    }
+  ],
+  "main": "main",
+  "homepage": "http://ecomfe.github.io/etpl/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ecomfe/etpl"
+  },
+  "description": "ETPL是一个强复用、灵活、高性能的JavaScript模板引擎，适用于浏览器端或Node环境中视图的生成。",
+  "scripts": {
+    "test": "jasmine-node test/spec"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.14.2"
+  },
+  "readme": "# ETPL (Enterprise Template)\n\n[![Build Status](https://travis-ci.org/ecomfe/etpl.svg?branch=master)](https://travis-ci.org/ecomfe/etpl)\n\nETPL是一个强复用、灵活、高性能的JavaScript模板引擎，适用于浏览器端或Node环境中视图的生成。\n\n\n## Start\n\nETpl可以在`CommonJS/AMD`的模块定义环境中使用，也能直接在页面下通过`script`标签引用。\n\n\n### 浏览器环境\n\n直接通过script标签引用，你可以获得一个全局的`etpl`变量\n\n```html\n<script src=\"etpl.js\"></script>\n```\n\n在AMD环境的模块定义时，你可以通过`同步require`获得ETpl模块\n\n```javascript\ndefine(function (require) {\n    var etpl = require('etpl');\n});\n```\n\n在AMD环境，你也可以通过`异步require`获得ETpl模块\n\n```javascript\nrequire([ 'etpl' ], function (etpl) {\n});\n```\n\n*在AMD环境下，请确保你的require.config配置能够让Loader找到ETpl模块*\n\n### Node.JS环境\n\n你可以通过`npm`来安装ETpl\n\n```\n$ npm install etpl\n```\n\n安装完成后，你就可以通过`require`获得一个ETpl模块，正常地使用它\n\n```javascript\nvar etpl = require('etpl');\n```\n\n### 使用\n\n使用ETPL模块，对模板源代码进行编译，会能得到编译后的function\n\n```javascript\nvar render = etpl.compile('Hello ${name}!');\n```\n\n执行这个function，传入数据对象，就能得到模板执行的结果了\n\n```javascript\nvar text = render({ name: 'etpl' });\n```\n\n查看更多例子，或者对模板渲染结果有疑虑，就去ETPL的[example](http://ecomfe.github.io/etpl/example.html)看看吧。\n\n\n## Documents\n\n通过文档，你可以更详细地了解ETpl的语法格式、使用方法、API等内容。\n\n- [模板语法](doc/syntax.md)\n- [API](doc/api.md)\n- [配置参数](doc/config.md)\n\n\n## Compatibility\n\n### ETpl3的新语法\n\n我们认为，当前流行的通过`block`来表达模板继承中的变化，是更好的表达方式。所以在ETpl3中，我们优化了母版的语法，删除了`master`、`contentplacehoder`、`content`标签，引入了`block`标签。\n\n对于ETpl2的使用者，我们提供一个[etpl2to3](https://github.com/ecomfe/etpl2to3)工具，能够帮助你平滑地将ETpl2的模板翻译成ETpl3。\n\n\n### get\n\nETpl2中，为了前向兼容，Engine的`get`方法可以根据target名称获取模板内容。\n\nETpl3不再支持该方法，所有的模板都通过render来使用：\n\n- 直接使用engine实例的render方法 \n- 调用renderer function\n\n如果仍需要该功能，说明你正在维护一个遗留系统，并且没有很频繁的升级需求。请继续使用ETpl2。\n\n\n### merge\n\nETpl的前身是[ER框架](https://github.com/ecomfe/er)自带的简易模板引擎，其基本与前身保持兼容。但出于代码体积和使用频度的考虑，ETpl删除了`merge`API。如果想要该API，请在自己的应用中加入如下代码：\n\n```javascript\n/**\n * 执行模板渲染，并将渲染后的字符串作为innerHTML填充到HTML元素中。\n * 兼容老版本的模板引擎api\n * \n * @param {HTMLElement} element 渲染字符串填充的HTML元素\n * @param {string} name target名称\n * @param {Object=} data 模板数据\n */\netpl.merge = function ( element, name, data ) {\n    if ( element ) {\n        element.innerHTML = this.render( name, data );\n    }\n};\n```\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/ecomfe/etpl/issues"
+  },
+  "_id": "etpl@3.0.0",
+  "dist": {
+    "shasum": "c04b301ee2675597cf5ceed25c18ff002943f149"
+  },
+  "_from": "etpl@",
+  "_resolved": "https://registry.npmjs.org/etpl/-/etpl-3.0.0.tgz"
+}
